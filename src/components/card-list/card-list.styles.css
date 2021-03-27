@@ -1,0 +1,11 @@
+
+/*new css grid 
+4 equal colums one fraction */
+
+.card-list {
+    width: 85vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
