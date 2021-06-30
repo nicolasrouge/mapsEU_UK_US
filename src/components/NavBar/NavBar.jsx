@@ -78,7 +78,10 @@ export default function NavBar () {
           
           </Route>
           <Route path="/europeNuts">
-          <Europe /><FirstPage />
+          <div style={{width: "87%", margin: "auto", marginTop: "-7.1%"}}>
+          <Europe /></div>
+          
+          <FirstPage />
           </Route>
           <Route path="/europeNuts2">
             <div>
@@ -109,7 +112,25 @@ export default function NavBar () {
         </div>
       )
       function Home() {
-        return <div><FirstPage /></div>;
+        return <div>
+          
+          <div style={{width: "87%", margin: "auto", marginTop: "-7.1%"}}>
+          <Europe /></div>
+          
+          <div style={{ float:"center"}}>
+        <Map />
+        </div>
+
+        <USPage setTooltipContent={setContent}  />
+            <ReactTooltip>{content}</ReactTooltip>
+
+
+          <FirstPage />
+
+
+
+                  
+        </div>;
       }
 
       function UK() {

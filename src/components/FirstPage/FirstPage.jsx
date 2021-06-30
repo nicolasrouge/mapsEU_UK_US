@@ -87,30 +87,7 @@ class FirstPage extends Component {
         handleChange={this.handleChange}
         />
 
-        <CardList countries={filteredCountries}/>
-
-
-        <h3>Europe Demography</h3>
-        <img src={europeanCartogram} width={500} alt="world Economy 2019"></img>
-        <br></br>
-
-        <h3> Metropolitan Economies</h3>
-        <img src={metropolitanEconomies} width={700} alt="world Economy 2019"></img>
-        <br></br>
-        <a href="https://www.pbl.nl/sites/default/files/downloads/PBL-2016-Cities-in-Europe-2469.pdf">sources</a>
-        <br></br>
-
-        <h3>European Landscape</h3>
-        <img src={europeanLandscape} width={700} alt="world Economy 2019"></img>
-        <br></br>
-        <a href="https://www.pbl.nl/sites/default/files/downloads/PBL-2016-Cities-in-Europe-2469.pdf">sources</a>
-        <br></br>
-
-        <h3>Population Europe</h3>
-        <img src={populationEurope} width={700} alt="world Economy 2019"></img>
-        <br></br>
-        <a href="https://www.pbl.nl/sites/default/files/downloads/PBL-2016-Cities-in-Europe-2469.pdf">sources</a>
-        <br></br>
+<CardList countries={filteredCountries}/>
 
         </Col>
         <Col ></Col>

@@ -60,7 +60,6 @@ const US_MapChart = (props) => {
         orientation={["diagonal"]}
       />
 
-      <ZoomableGroup zoom={1}>
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
           <>
@@ -140,7 +139,6 @@ const US_MapChart = (props) => {
         </Marker>
       ))}
 
-      </ZoomableGroup>
 
     </ComposableMap>
   );
