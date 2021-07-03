@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import FirstPage from "../FirstPage/FirstPage";
-import Europe from "../Europe/Europe";
+import Europe from "../WorldLanguages/World";
 import Europe2 from "../Europe/Europe2";
 
 import USPage from "../us/US-Page";
@@ -79,10 +79,7 @@ export default function NavBar() {
 
           </Route>
           <Route path="/europeNuts">
-            <div style={{ width: "87%", margin: "auto", marginTop: "-7.1%" }}>
-
-
-
+            <div style={{ margin: "auto"}}>
               <Europe />
 
             </div>
@@ -115,7 +112,7 @@ export default function NavBar() {
   )
   function Home() {
     return <div>
-      <div style={{ width: "87%", margin: "auto", marginTop: "-7.1%" }}>
+      <div style={{ width: "100%", margin: "auto", marginTop: "-8.3%" }}>
       <Worldmap />
       </div>
     </div>;
