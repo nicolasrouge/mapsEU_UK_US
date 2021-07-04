@@ -1,0 +1,250 @@
+id,name,alpha2,alpha3,french,english
+4,Afghanistan,af,afg,0,0
+248,Åland Islands,ax,ala,0,0
+8,Albania,al,alb,0,0
+12,Algeria,dz,dza,0.63,0
+16,American Samoa,as,asm,0,0
+20,Andorra,ad,and,0.7,0
+24,Angola,ao,ago,0,0
+660,Anguilla,ai,aia,0,0
+10,Antarctica,aq,ata,0,0
+28,Antigua and Barbuda,ag,atg,0,0
+32,Argentina,ar,arg,0,0.06
+51,Armenia,am,arm,0,0
+533,Aruba,aw,abw,0,0
+36,Australia,au,aus,0,0.92
+40,Austria,at,aut,0,0.73
+31,Azerbaijan,az,aze,0,0
+44,Bahamas,bs,bhs,0,0
+48,Bahrain,bh,bhr,0,0
+50,Bangladesh,bd,bgd,0,0.12
+52,Barbados,bb,brb,0,0
+112,Belarus,by,blr,0,0
+56,Belgium,be,bel,0.75,0.6
+84,Belize,bz,blz,0,0
+204,Benin,bj,ben,0.33,0
+60,Bermuda,bm,bmu,0,0
+64,Bhutan,bt,btn,0,0
+68,Bolivia (Plurinational State of),bo,bol,0,0
+535,"Bonaire, Sint Eustatius and Saba",bq,bes,0,0
+70,Bosnia and Herzegovina,ba,bih,0,0
+72,Botswana,bw,bwa,0,0.38
+74,Bouvet Island,bv,bvt,0,0
+76,Brazil,br,bra,0,0.05
+86,British Indian Ocean Territory,io,iot,0,0
+96,Brunei Darussalam,bn,brn,0,0
+100,Bulgaria,bg,bgr,0,0
+854,Burkina Faso,bf,bfa,0,0
+108,Burundi,bi,bdi,0,0
+132,Cabo Verde,cv,cpv,0,0
+116,Cambodia,kh,khm,0,0.22
+120,Cameroon,cm,cmr,0.4,0.38
+124,Canada,ca,can,0,0.8
+136,Cayman Islands,ky,cym,0,0
+140,Central African Republic,cf,caf,0.3,0
+148,Chad,td,tcd,0,0
+152,Chile,cl,chl,0,0
+156,China,cn,chn,0,0.01
+162,Christmas Island,cx,cxr,0,0
+166,Cocos (Keeling) Islands,cc,cck,0,0
+170,Colombia,co,col,0,0
+174,Comoros,km,com,0,0
+178,Congo,cg,cog,0.6,0
+180,"Congo, Democratic Republic of the",cd,cod,0.6,0
+184,Cook Islands,ck,cok,0,0
+188,Costa Rica,cr,cri,0,0
+384,Côte d'Ivoire,ci,civ,0.33,0
+191,Croatia,hr,hrv,0,0
+192,Cuba,cu,cub,0,0
+531,Curaçao,cw,cuw,0,0
+196,Cyprus,cy,cyp,0,0.73
+203,Czechia,cz,cze,0,0.27
+208,Denmark,dk,dnk,0,0.86
+262,Djibouti,dj,dji,0.5,0
+212,Dominica,dm,dma,0,0
+214,Dominican Republic,do,dom,0,0
+218,Ecuador,ec,ecu,0,0
+818,Egypt,eg,egy,0,0.35
+222,El Salvador,sv,slv,0,0
+226,Equatorial Guinea,gq,gnq,0.3,0
+232,Eritrea,er,eri,0,0
+233,Estonia,ee,est,0,0.5
+748,Eswatini,sz,swz,0,0
+231,Ethiopia,et,eth,0,0
+238,Falkland Islands (Malvinas),fk,flk,0,0
+234,Faroe Islands,fo,fro,0,0
+242,Fiji,fj,fji,0,0
+246,Finland,fi,fin,0,0.7
+250,France,fr,fra,1,0.39
+254,French Guiana,gf,guf,0.8,0
+258,French Polynesia,pf,pyf,0,0
+260,French Southern Territories,tf,atf,0,0
+266,Gabon,ga,gab,0.66,0
+270,Gambia,gm,gmb,0,0
+268,Georgia,ge,geo,0,0
+276,Germany,de,deu,0,0.56
+288,Ghana,gh,gha,0,0.66
+292,Gibraltar,gi,gib,0,0
+300,Greece,gr,grc,0,0.51
+304,Greenland,gl,grl,0,0
+308,Grenada,gd,grd,0,0
+312,Guadeloupe,gp,glp,0,0
+316,Guam,gu,gum,0,0
+320,Guatemala,gt,gtm,0,0
+831,Guernsey,gg,ggy,0,0
+324,Guinea,gn,gin,0.3,0
+624,Guinea-Bissau,gw,gnb,0,0
+328,Guyana,gy,guy,0,0.9
+332,Haiti,ht,hti,0.42,0
+334,Heard Island and McDonald Islands,hm,hmd,0,0
+336,Holy See,va,vat,0,0
+340,Honduras,hn,hnd,0,0
+344,Hong Kong,hk,hkg,0,0.5
+348,Hungary,hu,hun,0,0.2
+352,Iceland,is,isl,0,0
+356,India,in,ind,0,0.15
+360,Indonesia,id,idn,0,0
+364,Iran (Islamic Republic of),ir,irn,0,0
+368,Iraq,iq,irq,0,0.35
+372,Ireland,ie,irl,0,0.87
+833,Isle of Man,im,imn,0,0
+376,Israel,il,isr,0,0.84
+380,Italy,it,ita,0,0.34
+388,Jamaica,jm,jam,0,0.97
+392,Japan,jp,jpn,0,0.15
+832,Jersey,je,jey,0,0
+400,Jordan,jo,jor,0,0.45
+398,Kazakhstan,kz,kaz,0,0
+404,Kenya,ke,ken,0,0.18
+296,Kiribati,ki,kir,0,0
+408,Korea (Democratic People's Republic of),kp,prk,0,0
+410,"Korea, Republic of",kr,kor,0,0
+414,Kuwait,kw,kwt,0,0
+417,Kyrgyzstan,kg,kgz,0,0
+418,Lao People's Democratic Republic,la,lao,0,0
+428,Latvia,lv,lva,0.46,0
+422,Lebanon,lb,lbn,0.38,0
+426,Lesotho,ls,lso,0,0
+430,Liberia,lr,lbr,0,0.83
+434,Libya,ly,lby,0,0
+438,Liechtenstein,li,lie,0,0
+440,Lithuania,lt,ltu,0,0
+442,Luxembourg,lu,lux,0.92,0
+446,Macao,mo,mac,0,0
+450,Madagascar,mg,mdg,0.2,0.2
+454,Malawi,mw,mwi,0,0
+458,Malaysia,my,mys,0,0.63
+462,Maldives,mv,mdv,0,0
+466,Mali,ml,mli,0,0
+470,Malta,mt,mlt,0,0
+584,Marshall Islands,mh,mhl,0,0
+474,Martinique,mq,mtq,0,0
+478,Mauritania,mr,mrt,0,0
+480,Mauritius,mu,mus,0.72,0
+175,Mayotte,yt,myt,0,0
+484,Mexico,mx,mex,0,0.12
+583,Micronesia (Federated States of),fm,fsm,0,0
+498,"Moldova, Republic of",md,mda,0,0
+492,Monaco,mc,mco,0.96,0
+496,Mongolia,mn,mng,0,0
+499,Montenegro,me,mne,0,0
+500,Montserrat,ms,msr,0,0
+504,Morocco,ma,mar,0.35,0.14
+508,Mozambique,mz,moz,0,0
+104,Myanmar,mm,mmr,0,0
+516,Namibia,na,nam,0,0
+520,Nauru,nr,nru,0,0
+524,Nepal,np,npl,0,0.36
+528,Netherlands,nl,nld,0,0.91
+540,New Caledonia,nc,ncl,0.8,
+554,New Zealand,nz,nzl,0,0.9
+558,Nicaragua,ni,nic,0,0
+562,Niger,ne,ner,0,0
+566,Nigeria,ng,nga,0,0.86
+570,Niue,nu,niu,0,0
+574,Norfolk Island,nf,nfk,0,0
+807,North Macedonia,mk,mkd,0,0
+580,Northern Mariana Islands,mp,mnp,0,0
+578,Norway,no,nor,0,0
+512,Oman,om,omn,0,0
+586,Pakistan,pk,pak,0,0.11
+585,Palau,pw,plw,0,0
+275,"Palestine, State of",ps,pse,0,0
+591,Panama,pa,pan,0,0
+598,Papua New Guinea,pg,png,0,0.5
+600,Paraguay,py,pry,0,0
+604,Peru,pe,per,0,0
+608,Philippines,ph,phl,0,0.6
+612,Pitcairn,pn,pcn,0,0
+616,Poland,pl,pol,0,0.37
+620,Portugal,pt,prt,0,0.27
+630,Puerto Rico,pr,pri,0,0.5
+634,Qatar,qa,qat,0,0
+638,Réunion,re,reu,0,0
+642,Romania,ro,rou,0,0.31
+643,Russian Federation,ru,rus,0,0.1
+646,Rwanda,rw,rwa,0,0
+652,Saint Barthélemy,bl,blm,0,0
+654,"Saint Helena, Ascension and Tristan da Cunha",sh,shn,0,0
+659,Saint Kitts and Nevis,kn,kna,0,0
+662,Saint Lucia,lc,lca,0,0
+663,Saint Martin (French part),mf,maf,0,0
+666,Saint Pierre and Miquelon,pm,spm,0,0
+670,Saint Vincent and the Grenadines,vc,vct,0,0
+882,Samoa,ws,wsm,0,0
+674,San Marino,sm,smr,0,0
+678,Sao Tome and Principe,st,stp,0,0
+682,Saudi Arabia,sa,sau,0,0
+686,Senegal,sn,sen,0.3,0
+688,Serbia,rs,srb,0,0
+690,Seychelles,sc,syc,0.53,0
+694,Sierra Leone,sl,sle,0,0.83
+702,Singapore,sg,sgp,0,0.8
+534,Sint Maarten (Dutch part),sx,sxm,0,0
+703,Slovakia,sk,svk,0,0
+705,Slovenia,si,svn,0,0
+90,Solomon Islands,sb,slb,0,0
+706,Somalia,so,som,0,0
+710,South Africa,za,zaf,0,0.31
+239,South Georgia and the South Sandwich Islands,gs,sgs,0,0
+728,South Sudan,ss,ssd,0,0
+724,Spain,es,esp,0,0.22
+144,Sri Lanka,lk,lka,0,0.62
+729,Sudan,sd,sdn,0,0
+740,Suriname,sr,sur,0,0
+744,Svalbard and Jan Mayen,sj,sjm,0,0
+752,Sweden,se,swe,0,0.89
+756,Switzerland,ch,che,0.67,0.61
+760,Syrian Arab Republic,sy,syr,0,0
+158,"Taiwan, Province of China",tw,twn,0,0
+762,Tajikistan,tj,tjk,0,0
+834,"Tanzania, United Republic of",tz,tza,0,0.1
+764,Thailand,th,tha,0,0.27
+626,Timor-Leste,tl,tls,0,0
+768,Togo,tg,tgo,0.4,0
+772,Tokelau,tk,tkl,0,0
+776,Tonga,to,ton,0,0
+780,Trinidad and Tobago,tt,tto,0,0.87
+788,Tunisia,tn,tun,0.52,0
+792,Turkey,tr,tur,0,0.17
+795,Turkmenistan,tm,tkm,0,0
+796,Turks and Caicos Islands,tc,tca,0,0
+798,Tuvalu,tv,tuv,0,0
+800,Uganda,ug,uga,0,0
+804,Ukraine,ua,ukr,0,0.18
+784,United Arab Emirates,ae,are,0,0
+826,United Kingdom of Great Britain and Northern Ireland,gb,gbr,0,0.92
+840,United States of America,us,usa,0,0.8
+581,United States Minor Outlying Islands,um,umi,0,0
+858,Uruguay,uy,ury,0,0
+860,Uzbekistan,uz,uzb,0,0
+548,Vanuatu,vu,vut,0.32,0
+862,Venezuela (Bolivarian Republic of),ve,ven,0,0
+704,Viet Nam,vn,vnm,0,0
+92,Virgin Islands (British),vg,vgb,0,0
+850,Virgin Islands (U.S.),vi,vir,0,0
+876,Wallis and Futuna,wf,wlf,0,0
+732,Western Sahara,eh,esh,0,0
+887,Yemen,ye,yem,0,0
+894,Zambia,zm,zmb,0,0
+716,Zimbabwe,zw,zwe,0,0.82

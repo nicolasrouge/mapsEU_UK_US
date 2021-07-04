@@ -1,4 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
+import { csv } from "d3-fetch";
+import { scaleLinear } from "d3-scale";
 import {
   ComposableMap,
   Geographies,
@@ -14,6 +16,7 @@ import percentages from './percentage';
 import islands from './islands';
 import engSpeakingPercentage from "./englishSpeakingCountries";
 import engIsles from "./engIsles";
+import frenchSpeakers from './frenchSpeakers.csv';
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -47,8 +50,6 @@ const canada = [
   "CAN"
 ]
 
-
-
 function generateCircle(deg) {
   if (!deg) return [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]];
   return new Array(361).fill(1).map((d, i) => {
@@ -56,7 +57,24 @@ function generateCircle(deg) {
   });
 }
 
+//https://en.wikipedia.org/wiki/Geographical_distribution_of_French_speakers
+const colorScale = scaleLinear()
+  .domain([0.09, 0.68])
+  .range(["#ffedea", "#002b80"]);
+
+const colorScale2 = scaleLinear()
+  .domain([0.09, 0.68])
+  .range(["#ffedea", "red"]);
+
 const World = ({ setTooltipContent, setNameTooltipContent }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    csv(frenchSpeakers).then((data) => {
+      setData(data);
+    });
+  }, []);
+
   return (
     <ComposableMap data-tip="" projection="geoEqualEarth" width="900">
       <PatternLines
@@ -81,97 +99,95 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
 
       <Sphere stroke="#DDD" strokeWidth={0.3} />
       <Graticule stroke="#DDD" strokeWidth={0.2} />
-      <Geographies geography={geoUrl} stroke="#000" strokeWidth={0.4}>
-        {({ geographies }) =>
-          geographies.map(geo => {
-            var color = "#595959";
-            const isHighlighted =
-              frenchSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
-            if (isHighlighted) {
-              color = "url('#lines')";
-            }
-            const isEng =
-              engSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
-            if (isEng) {
-              color = "#b30000";
-            }
-            const isFrenchImportant =
-              frenchImportant.indexOf(geo.properties.ISO_A3) !== -1;
-            if (isFrenchImportant) {
-              color = "#002b80";
-            }
-            const isCAN =
-              canada.indexOf(geo.properties.ISO_A3) !== -1;
-            if (isCAN) {
-              color = "url('#linesEngFr')";
-            }
-            const isAbleaToSpeakEng =
-              ableTospeakEnglish.indexOf(geo.properties.ISO_A3) !== -1;
-            if (isAbleaToSpeakEng) {
-              color = "#4d0000";
-            }
-            /*const isSpan =
-              spanSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
-            if (isSpan) {
-              color = "#e65c00";
-            }*/
-            return (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                onMouseEnter={() => {
-                  setTooltipContent(`${geo.properties.ISO_A2}`);
-                  setNameTooltipContent(`${geo.properties.NAME}`);
-                  console.log(geo.properties);
-                }}
-                onMouseLeave={() => {
-                  setTooltipContent("");
-                  setNameTooltipContent("");
-                  console.log("");
-                }}
-                style={{
-                  hover: {
-                    fill: "#009999",
-                    outline: "none"
-                  },
-                  pressed: {
-                    fill: "#E42",
-                    outline: "none"
-                  }
-                }}
-                fill={color}
+      {data.length > 0 && (
+        <Geographies geography={geoUrl} stroke="#000" strokeWidth={0.4}>
+          {({ geographies }) =>
+            geographies.map(geo => {
+              var color = "#595959";
+              const isHighlighted =
+                frenchSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
+              if (isHighlighted) {
+                color = "url('#lines')";
+              }
+              const isEng =
+                engSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
+              if (isEng) {
+                color = "#b30000";
+              }
+              const isFrenchImportant =
+                frenchImportant.indexOf(geo.properties.ISO_A3) !== -1;
+              if (isFrenchImportant) {
+                color = "#002b80";
+              }
+              const isCAN =
+                canada.indexOf(geo.properties.ISO_A3) !== -1;
+              if (isCAN) {
+                color = "url('#linesEngFr')";
+              }
+              const isAbleaToSpeakEng =
+                ableTospeakEnglish.indexOf(geo.properties.ISO_A3) !== -1;
+              if (isAbleaToSpeakEng) {
+                color = "#4d0000";
+              }
+              /*const isSpan =
+                spanSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
+              if (isSpan) {
+                color = "#e65c00";
+              }*/
+              const d = data.find((s) => s.alpha3 === geo.properties.ISO_A3.toLowerCase());
 
-                onClick={() => {
-                  setTooltipContent(`${geo.properties.ISO_A2}`);
-                  setNameTooltipContent(`${geo.properties.NAME}`);
-                  console.log(geo.properties);
-                }}
-              />
-            );
-          })
-        }
-      </Geographies>
-      {percentages.map(({ name, coordinates }) => (
-        <Marker key={"annot"} coordinates={coordinates}>
-          <text
-            textAnchor="middle"
-            style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 6, pointerEvents: "none" }}
-          >
-            {name}
-          </text>
-        </Marker>
-      ))}
+              console.log("d", d);
 
-      {engSpeakingPercentage.map(({ name, coordinates }) => (
-        <Marker key={"annot"} coordinates={coordinates}>
-          <text
-            textAnchor="middle"
-            style={{ fontFamily: "system-ui", fill: "pink", fontSize: 6, pointerEvents: "none" }}
-          >
-            {name}
-          </text>
-        </Marker>
-      ))}
+              if(d !== undefined){
+                console.log("d", d.french);
+                color = colorScale(d["french"]);
+                
+                if(d.french == 0){
+                  color = colorScale2(d["english"]);
+                }
+
+              }
+
+              return (
+
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  onMouseEnter={() => {
+                    setTooltipContent(`${geo.properties.ISO_A2}`);
+                    setNameTooltipContent(`${geo.properties.NAME}`);
+                    console.log(geo.properties);
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent("");
+                    setNameTooltipContent("");
+                    console.log("");
+                  }}
+                  style={{
+                    hover: {
+                      fill: "#009999",
+                      outline: "none"
+                    },
+                    pressed: {
+                      fill: "#E42",
+                      outline: "none"
+                    }
+                  }}
+
+                  fill={color}
+
+                  onClick={() => {
+                    setTooltipContent(`${geo.properties.ISO_A2}`);
+                    setNameTooltipContent(`${geo.properties.NAME}`);
+                    console.log(geo.properties);
+                  }}
+                />
+              );
+            })
+          }
+        </Geographies>)}
+
+
 
       {islands.map(({ name, percentage, coordinates }) => (
         <Marker key={name} coordinates={coordinates}>
@@ -218,3 +234,27 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
 };
 
 export default memo(World);
+
+
+      /*
+      
+            {percentages.map(({ name, coordinates }) => (
+        <Marker key={"annot"} coordinates={coordinates}>
+          <text
+            textAnchor="middle"
+            style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 6, pointerEvents: "none" }}
+          >
+            {name}
+          </text>
+        </Marker>
+      ))}
+      {engSpeakingPercentage.map(({ name, coordinates }) => (
+        <Marker key={"annot"} coordinates={coordinates}>
+          <text
+            textAnchor="middle"
+            style={{ fontFamily: "system-ui", fill: "pink", fontSize: 6, pointerEvents: "none" }}
+          >
+            {name}
+          </text>
+        </Marker>
+      ))}*/
