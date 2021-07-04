@@ -19,6 +19,7 @@ import engIsles from "./engIsles";
 import frenchSpeakers from './frenchSpeakers.csv';
 import latlongCountries from './world_country_and_usa_states_latitude_and_longitude_values.csv';
 import { longStackSupport } from "q";
+import { ZoomableGroup } from "react-simple-maps"
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -87,6 +88,7 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
 
   return (
     <ComposableMap data-tip="" projection="geoEqualEarth" width="900">
+      <ZoomableGroup>
       <PatternLines
         id="lines"
         height={5}
@@ -113,7 +115,7 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
         <Geographies geography={geoUrl} stroke="#000" strokeWidth={0.4}>
           {({ geographies }) =>
             geographies.map(geo => {
-              var color = "#595959";
+              var color = "white";
               const isHighlighted =
                 frenchSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
               if (isHighlighted) {
@@ -144,17 +146,15 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
               if (isSpan) {
                 color = "#e65c00";
               }*/
-              const d = data.find((s) => s.alpha3 === geo.properties.ISO_A3.toLowerCase());
+              const d = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
 
 
               if(d !== undefined){
-                console.log("d", d.french);
-                color = colorScale(d["french"]);
-                
-                if(d.french == 0){
-                  color = colorScale2(d["english"]);
+                console.log("d", d);
+                color = colorScale2(d["english"]);
+                if(d.french !== "" ){
+                  color = colorScale(d["french"]);
                 }
-
               }
 
               return (
@@ -198,16 +198,36 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
 
         
 
-           {latLongdata.map(({latitude, longitude, country}) => (
-             <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
-             <text
-               textAnchor="middle"
-               style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none", opacity: "0.2" }}
-             >
-               {country}
-             </text>
-           </Marker>
-           ))}   
+      {latLongdata.map(({ latitude, longitude, country, english }) => {
+        console.log("english -> " + english);
+        if (english.length > 0) {
+          return(
+            <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
+              <text
+                textAnchor="middle"
+                style={{ fontFamily: "system-ui", fill: "pink", fontSize: 5, pointerEvents: "none", opacity: "0.4" }}
+              >
+                {Math.round(english * 100)} %
+              </text>
+            </Marker>
+          )
+        }
+      })}
+
+      {latLongdata.map(({ latitude, longitude, country, french }) => {
+        if (french != "") {
+          return (
+            <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
+              <text
+                textAnchor="middle"
+                style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none", opacity: "0.4" }}
+              >
+                {Math.round(french * 100)} %
+              </text>
+            </Marker>
+          )
+        }
+      })}
 
 
       
@@ -226,6 +246,7 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
         strokeWidth={0.5}
         strokeDasharray={[5, 5]}
       />
+      </ZoomableGroup>
     </ComposableMap>
   );
 };
