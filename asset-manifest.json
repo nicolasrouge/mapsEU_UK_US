@@ -1,18 +1,19 @@
 {
   "files": {
     "main.css": "/mapsEU_UK_US/static/css/main.4d193564.chunk.css",
-    "main.js": "/mapsEU_UK_US/static/js/main.870cbe22.chunk.js",
-    "main.js.map": "/mapsEU_UK_US/static/js/main.870cbe22.chunk.js.map",
-    "runtime-main.js": "/mapsEU_UK_US/static/js/runtime-main.8a1749b7.js",
-    "runtime-main.js.map": "/mapsEU_UK_US/static/js/runtime-main.8a1749b7.js.map",
-    "static/js/2.3cd2ecc3.chunk.js": "/mapsEU_UK_US/static/js/2.3cd2ecc3.chunk.js",
-    "static/js/2.3cd2ecc3.chunk.js.map": "/mapsEU_UK_US/static/js/2.3cd2ecc3.chunk.js.map",
-    "static/js/3.c3b758d0.chunk.js": "/mapsEU_UK_US/static/js/3.c3b758d0.chunk.js",
-    "static/js/3.c3b758d0.chunk.js.map": "/mapsEU_UK_US/static/js/3.c3b758d0.chunk.js.map",
+    "main.js": "/mapsEU_UK_US/static/js/main.de98a77e.chunk.js",
+    "main.js.map": "/mapsEU_UK_US/static/js/main.de98a77e.chunk.js.map",
+    "runtime-main.js": "/mapsEU_UK_US/static/js/runtime-main.51c17fb4.js",
+    "runtime-main.js.map": "/mapsEU_UK_US/static/js/runtime-main.51c17fb4.js.map",
+    "static/js/2.15006dd4.chunk.js": "/mapsEU_UK_US/static/js/2.15006dd4.chunk.js",
+    "static/js/2.15006dd4.chunk.js.map": "/mapsEU_UK_US/static/js/2.15006dd4.chunk.js.map",
+    "static/js/3.a3097073.chunk.js": "/mapsEU_UK_US/static/js/3.a3097073.chunk.js",
+    "static/js/3.a3097073.chunk.js.map": "/mapsEU_UK_US/static/js/3.a3097073.chunk.js.map",
     "index.html": "/mapsEU_UK_US/index.html",
     "static/css/main.4d193564.chunk.css.map": "/mapsEU_UK_US/static/css/main.4d193564.chunk.css.map",
-    "static/js/2.3cd2ecc3.chunk.js.LICENSE.txt": "/mapsEU_UK_US/static/js/2.3cd2ecc3.chunk.js.LICENSE.txt",
+    "static/js/2.15006dd4.chunk.js.LICENSE.txt": "/mapsEU_UK_US/static/js/2.15006dd4.chunk.js.LICENSE.txt",
     "static/media/europeanLandscape.a1b863c2.jpg": "/mapsEU_UK_US/static/media/europeanLandscape.a1b863c2.jpg",
+    "static/media/frenchSpeakers.19e5ab0a.csv": "/mapsEU_UK_US/static/media/frenchSpeakers.19e5ab0a.csv",
     "static/media/metropolitanEco.e99f2b66.png": "/mapsEU_UK_US/static/media/metropolitanEco.e99f2b66.png",
     "static/media/populationEurope.79a64e22.png": "/mapsEU_UK_US/static/media/populationEurope.79a64e22.png",
     "static/media/populationEurope.e3256e39.jpg": "/mapsEU_UK_US/static/media/populationEurope.e3256e39.jpg",
@@ -20,9 +21,9 @@
     "static/media/worldEconomy2019.dbe5ec90.jpg": "/mapsEU_UK_US/static/media/worldEconomy2019.dbe5ec90.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8a1749b7.js",
-    "static/js/2.3cd2ecc3.chunk.js",
+    "static/js/runtime-main.51c17fb4.js",
+    "static/js/2.15006dd4.chunk.js",
     "static/css/main.4d193564.chunk.css",
-    "static/js/main.870cbe22.chunk.js"
+    "static/js/main.de98a77e.chunk.js"
   ]
 }
