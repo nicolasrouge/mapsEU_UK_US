@@ -17,6 +17,8 @@ import islands from './islands';
 import engSpeakingPercentage from "./englishSpeakingCountries";
 import engIsles from "./engIsles";
 import frenchSpeakers from './frenchSpeakers.csv';
+import latlongCountries from './world_country_and_usa_states_latitude_and_longitude_values.csv';
+import { longStackSupport } from "q";
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -68,11 +70,19 @@ const colorScale2 = scaleLinear()
 
 const World = ({ setTooltipContent, setNameTooltipContent }) => {
   const [data, setData] = useState([]);
+  const [latLongdata, setLatLongData] = useState([]);
 
   useEffect(() => {
     csv(frenchSpeakers).then((data) => {
       setData(data);
     });
+
+    //latlongCountries
+
+    csv(latlongCountries).then((data) => {
+      setLatLongData(data);
+    });
+
   }, []);
 
   return (
@@ -136,7 +146,6 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
               }*/
               const d = data.find((s) => s.alpha3 === geo.properties.ISO_A3.toLowerCase());
 
-              console.log("d", d);
 
               if(d !== undefined){
                 console.log("d", d.french);
@@ -187,9 +196,45 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
           }
         </Geographies>)}
 
+        
+
+           {latLongdata.map(({latitude, longitude, country}) => (
+             <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
+             <text
+               textAnchor="middle"
+               style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none", opacity: "0.2" }}
+             >
+               {country}
+             </text>
+           </Marker>
+           ))}   
 
 
-      {islands.map(({ name, percentage, coordinates }) => (
+      
+
+
+      <Line coordinates={generateCircle(0)} stroke="#F53" strokeWidth={0.5} />
+      <Line
+        coordinates={generateCircle(23)}
+        stroke="#776865"
+        strokeWidth={0.5}
+        strokeDasharray={[5, 5]}
+      />
+      <Line
+        coordinates={generateCircle(-24)}
+        stroke="#776865"
+        strokeWidth={0.5}
+        strokeDasharray={[5, 5]}
+      />
+    </ComposableMap>
+  );
+};
+
+export default memo(World);
+
+
+      /*
+{islands.map(({ name, percentage, coordinates }) => (
         <Marker key={name} coordinates={coordinates}>
           <circle r={2} fill="#002b80" stroke="black" strokeWidth={0.3} />
           <text
@@ -215,28 +260,8 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
         </Marker>
       ))}
 
-
-      <Line coordinates={generateCircle(0)} stroke="#F53" strokeWidth={0.5} />
-      <Line
-        coordinates={generateCircle(23)}
-        stroke="#776865"
-        strokeWidth={0.5}
-        strokeDasharray={[5, 5]}
-      />
-      <Line
-        coordinates={generateCircle(-24)}
-        stroke="#776865"
-        strokeWidth={0.5}
-        strokeDasharray={[5, 5]}
-      />
-    </ComposableMap>
-  );
-};
-
-export default memo(World);
-
-
-      /*
+      const e = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
+              console.log("e", e);
       
             {percentages.map(({ name, coordinates }) => (
         <Marker key={"annot"} coordinates={coordinates}>
