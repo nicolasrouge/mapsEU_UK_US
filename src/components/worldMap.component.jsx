@@ -18,6 +18,7 @@ const changeText = (name) => {
 function Worldmap() {
     const [content, setContent] = useState("test");
     const [nameContent, setNameTooltipContent] = useState("");
+    const [comment, setComment] = useState("");
     const [data, setData] = useState("");
     const [capital, setCapital] = useState("");
     const [hide, setHide] = useState(false);
@@ -46,13 +47,16 @@ function Worldmap() {
 
     return (
         <div>
-            <Europe setTooltipContent={setContent} setNameTooltipContent={setNameTooltipContent} />
+            <Europe setTooltipContent={setContent} setNameTooltipContent={setNameTooltipContent} setComment={setComment} />
 
             {!hide && 
                 <ReactTooltip >
-                    <img style={{ width: '30px' }} src={changeText(content)}></img> - {nameContent} - {capital}
-                    <br></br>
-                    {data}
+                    <img style={{ width: '30px' }} src={changeText(content)}></img> - <text style={{fontWeight: "bold"}}>{nameContent} - {capital}</text>
+                    <p style={{maxWidth: "300px", textAlign: "left" }}>Official language: {data}</p>
+                    <p style={{maxWidth: "300px", textAlign: "left" }}>
+                    {comment}
+                    </p>
+                    
                 </ReactTooltip>
             }
 

@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "@vx/gradient": "0.0.199",
     "@vx/pattern": "0.0.199",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",

@@ -17,9 +17,13 @@ import islands from './islands';
 import engSpeakingPercentage from "./englishSpeakingCountries";
 import engIsles from "./engIsles";
 import frenchSpeakers from './frenchSpeakers.csv';
+//frenchIslands
 import latlongCountries from './world_country_and_usa_states_latitude_and_longitude_values.csv';
 import { longStackSupport } from "q";
 import { ZoomableGroup } from "react-simple-maps"
+import { LinearGradient, RadialGradient } from '@vx/gradient';
+
+//https://vx-demo.vercel.app/docs/group
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -69,7 +73,7 @@ const colorScale2 = scaleLinear()
   .domain([0.09, 0.68])
   .range(["#ffedea", "red"]);
 
-const World = ({ setTooltipContent, setNameTooltipContent }) => {
+const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
   const [data, setData] = useState([]);
   const [latLongdata, setLatLongData] = useState([]);
 
@@ -86,6 +90,8 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
 
   }, []);
 
+
+
   return (
     <ComposableMap data-tip="" projection="geoEqualEarth" width="900">
       <ZoomableGroup>
@@ -98,6 +104,7 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
         background="#002b80"
         orientation={["diagonal"]}
       />
+      <LinearGradient id="gradient" from="red" to="#002b80" x1="60.7%" y1="0%" x2="61%" y2="0%"/>;
 
       <PatternLines
         id="linesEngFr"
@@ -105,7 +112,9 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
         width={5}
         stroke="#002b80"
         strokeWidth={0.6}
-        background="#b30000"
+        strokeLinecap= "butt"
+        background="red"
+        shapeRendering="100"
         orientation={["diagonal"]}
       />
 
@@ -131,11 +140,7 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
               if (isFrenchImportant) {
                 color = "#002b80";
               }
-              const isCAN =
-                canada.indexOf(geo.properties.ISO_A3) !== -1;
-              if (isCAN) {
-                color = "url('#linesEngFr')";
-              }
+
               const isAbleaToSpeakEng =
                 ableTospeakEnglish.indexOf(geo.properties.ISO_A3) !== -1;
               if (isAbleaToSpeakEng) {
@@ -157,6 +162,12 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
                 }
               }
 
+              const isCAN =
+              canada.indexOf(geo.properties.ISO_A3) !== -1;
+            if (isCAN) {
+              color = "url('#gradient')"
+            }
+
               return (
 
                 <Geography
@@ -165,6 +176,18 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
                   onMouseEnter={() => {
                     setTooltipContent(`${geo.properties.ISO_A2}`);
                     setNameTooltipContent(`${geo.properties.NAME}`);
+
+                    //get the comment
+                    const d = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
+                    var comment = "";
+                    if(d !== undefined){
+                      console.log("d", d);
+                      if(d["com"] != ""){
+                        comment = d["com"];
+                      }
+                    }
+                    setComment(comment);
+
                     console.log(geo.properties);
                   }}
                   onMouseLeave={() => {
@@ -203,12 +226,35 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
         if (english.length > 0) {
           return(
             <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
+
               <text
                 textAnchor="middle"
-                style={{ fontFamily: "system-ui", fill: "pink", fontSize: 5, pointerEvents: "none", opacity: "0.4" }}
+                style={{ fontFamily: "system-ui", fill: "green", fontSize: 5, pointerEvents: "none", opacity: "0.4" }}
               >
-                {Math.round(english * 100)} %
+                {Math.round(english * 100)}%
               </text>
+            </Marker>
+          )
+        }
+      })}
+
+
+      {latLongdata.map(({ latitude, longitude, country, englishIsland }) => {
+        if (englishIsland == 1) {
+          return(
+            <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
+                        <circle r={1.2} fill="red" stroke="black" strokeWidth={0.3} />
+            </Marker>
+          )
+        }
+      })}
+
+      
+      {latLongdata.map(({ latitude, longitude, country, frenchIslands }) => {
+        if (frenchIslands == 1) {
+          return(
+            <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
+                        <circle r={1.2} fill="blue" stroke="black" strokeWidth={0.3} />
             </Marker>
           )
         }
@@ -222,16 +268,12 @@ const World = ({ setTooltipContent, setNameTooltipContent }) => {
                 textAnchor="middle"
                 style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none", opacity: "0.4" }}
               >
-                {Math.round(french * 100)} %
+                {Math.round(french * 100)}%
               </text>
             </Marker>
           )
         }
       })}
-
-
-      
-
 
       <Line coordinates={generateCircle(0)} stroke="#F53" strokeWidth={0.5} />
       <Line
