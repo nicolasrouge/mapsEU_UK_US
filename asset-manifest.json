@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/mapsEU_UK_US/static/css/main.4d193564.chunk.css",
-    "main.js": "/mapsEU_UK_US/static/js/main.63b46b5b.chunk.js",
-    "main.js.map": "/mapsEU_UK_US/static/js/main.63b46b5b.chunk.js.map",
-    "runtime-main.js": "/mapsEU_UK_US/static/js/runtime-main.3b808849.js",
-    "runtime-main.js.map": "/mapsEU_UK_US/static/js/runtime-main.3b808849.js.map",
-    "static/js/2.27d4f0c2.chunk.js": "/mapsEU_UK_US/static/js/2.27d4f0c2.chunk.js",
-    "static/js/2.27d4f0c2.chunk.js.map": "/mapsEU_UK_US/static/js/2.27d4f0c2.chunk.js.map",
-    "static/js/3.13ae535b.chunk.js": "/mapsEU_UK_US/static/js/3.13ae535b.chunk.js",
-    "static/js/3.13ae535b.chunk.js.map": "/mapsEU_UK_US/static/js/3.13ae535b.chunk.js.map",
+    "main.js": "/mapsEU_UK_US/static/js/main.9f674784.chunk.js",
+    "main.js.map": "/mapsEU_UK_US/static/js/main.9f674784.chunk.js.map",
+    "runtime-main.js": "/mapsEU_UK_US/static/js/runtime-main.526eb380.js",
+    "runtime-main.js.map": "/mapsEU_UK_US/static/js/runtime-main.526eb380.js.map",
+    "static/js/2.fb5b406a.chunk.js": "/mapsEU_UK_US/static/js/2.fb5b406a.chunk.js",
+    "static/js/2.fb5b406a.chunk.js.map": "/mapsEU_UK_US/static/js/2.fb5b406a.chunk.js.map",
+    "static/js/3.c7a6192c.chunk.js": "/mapsEU_UK_US/static/js/3.c7a6192c.chunk.js",
+    "static/js/3.c7a6192c.chunk.js.map": "/mapsEU_UK_US/static/js/3.c7a6192c.chunk.js.map",
     "index.html": "/mapsEU_UK_US/index.html",
     "static/css/main.4d193564.chunk.css.map": "/mapsEU_UK_US/static/css/main.4d193564.chunk.css.map",
-    "static/js/2.27d4f0c2.chunk.js.LICENSE.txt": "/mapsEU_UK_US/static/js/2.27d4f0c2.chunk.js.LICENSE.txt",
+    "static/js/2.fb5b406a.chunk.js.LICENSE.txt": "/mapsEU_UK_US/static/js/2.fb5b406a.chunk.js.LICENSE.txt",
     "static/media/europeanLandscape.a1b863c2.jpg": "/mapsEU_UK_US/static/media/europeanLandscape.a1b863c2.jpg",
     "static/media/frenchSpeakers.f0460425.csv": "/mapsEU_UK_US/static/media/frenchSpeakers.f0460425.csv",
     "static/media/metropolitanEco.e99f2b66.png": "/mapsEU_UK_US/static/media/metropolitanEco.e99f2b66.png",
@@ -19,12 +19,12 @@
     "static/media/populationEurope.e3256e39.jpg": "/mapsEU_UK_US/static/media/populationEurope.e3256e39.jpg",
     "static/media/texas.svg": "/mapsEU_UK_US/static/media/texas.84f4dc91.svg",
     "static/media/worldEconomy2019.dbe5ec90.jpg": "/mapsEU_UK_US/static/media/worldEconomy2019.dbe5ec90.jpg",
-    "static/media/world_country_and_usa_states_latitude_and_longitude_values.24afd02b.csv": "/mapsEU_UK_US/static/media/world_country_and_usa_states_latitude_and_longitude_values.24afd02b.csv"
+    "static/media/world_country_and_usa_states_latitude_and_longitude_values.2dc2844b.csv": "/mapsEU_UK_US/static/media/world_country_and_usa_states_latitude_and_longitude_values.2dc2844b.csv"
   },
   "entrypoints": [
-    "static/js/runtime-main.3b808849.js",
-    "static/js/2.27d4f0c2.chunk.js",
+    "static/js/runtime-main.526eb380.js",
+    "static/js/2.fb5b406a.chunk.js",
     "static/css/main.4d193564.chunk.css",
-    "static/js/main.63b46b5b.chunk.js"
+    "static/js/main.9f674784.chunk.js"
   ]
 }
