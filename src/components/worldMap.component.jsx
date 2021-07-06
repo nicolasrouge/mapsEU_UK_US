@@ -8,7 +8,11 @@ const changeText = (name) => {
     if (name === null) {
         return "";
     } else {
-        url = "https://www.countryflags.io/" + name.toLowerCase() + "/flat/64.png";
+        if(name != ""){
+            url = "https://www.countryflags.io/" + name.toLowerCase() + "/flat/64.png";
+        }else{
+            url =""
+        }
         return url;
     }
 }
@@ -25,6 +29,7 @@ function Worldmap() {
 
     useEffect(async () => {
         if (content != "") {
+            console.log({content});
             const result = await axios(
                 'https://restcountries.eu/rest/v2/alpha/' + content.toLowerCase(),
             );
