@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mapsEU_UK_US/static/css/main.c3d29143.chunk.css",
-    "main.js": "/mapsEU_UK_US/static/js/main.fc92bb8f.chunk.js",
-    "main.js.map": "/mapsEU_UK_US/static/js/main.fc92bb8f.chunk.js.map",
+    "main.js": "/mapsEU_UK_US/static/js/main.10fd464d.chunk.js",
+    "main.js.map": "/mapsEU_UK_US/static/js/main.10fd464d.chunk.js.map",
     "runtime-main.js": "/mapsEU_UK_US/static/js/runtime-main.526eb380.js",
     "runtime-main.js.map": "/mapsEU_UK_US/static/js/runtime-main.526eb380.js.map",
     "static/js/2.7fe76079.chunk.js": "/mapsEU_UK_US/static/js/2.7fe76079.chunk.js",
@@ -19,12 +19,12 @@
     "static/media/populationEurope.e3256e39.jpg": "/mapsEU_UK_US/static/media/populationEurope.e3256e39.jpg",
     "static/media/texas.svg": "/mapsEU_UK_US/static/media/texas.84f4dc91.svg",
     "static/media/worldEconomy2019.dbe5ec90.jpg": "/mapsEU_UK_US/static/media/worldEconomy2019.dbe5ec90.jpg",
-    "static/media/world_country_and_usa_states_latitude_and_longitude_values.6891f067.csv": "/mapsEU_UK_US/static/media/world_country_and_usa_states_latitude_and_longitude_values.6891f067.csv"
+    "static/media/world_country_and_usa_states_latitude_and_longitude_values.587930f2.csv": "/mapsEU_UK_US/static/media/world_country_and_usa_states_latitude_and_longitude_values.587930f2.csv"
   },
   "entrypoints": [
     "static/js/runtime-main.526eb380.js",
     "static/js/2.7fe76079.chunk.js",
     "static/css/main.c3d29143.chunk.css",
-    "static/js/main.fc92bb8f.chunk.js"
+    "static/js/main.10fd464d.chunk.js"
   ]
 }
