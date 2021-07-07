@@ -50,12 +50,12 @@ function generateCircle(deg) {
 /**      <Sphere stroke="#DDD" strokeWidth={0.3} />
       <Graticule stroke="#DDD" strokeWidth={0.2} /> */
 const colorScale = scaleLinear()
-  .domain([0, 0.68])
-  .range(["#ffedea", "#002b80"]);
+  .domain([0, 0.72])
+  .range(["#ffedea", "#105d8b"]);
 
 const colorScale2 = scaleLinear()
-  .domain([0, 0.68])
-  .range(["#ffedea", "red"]);
+  .domain([0, 0.70])
+  .range(["#ffedea", "#b30000"]);
 
 const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
   const [data, setData] = useState([]);
@@ -77,7 +77,7 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
 
 
   return (
-    <ComposableMap data-tip="" projection="geoEqualEarth" width="900">
+    <ComposableMap data-tip="" projection="geoEqualEarth" width="900" height="2000">
       <ZoomableGroup>
       <PatternLines
         id="lines"
@@ -88,7 +88,9 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
         background="#002b80"
         orientation={["diagonal"]}
       />
-      <LinearGradient id="gradient" from="red" to="#002b80" x1="60.7%" y1="0%" x2="61%" y2="0%"/>;
+      
+      //canada
+      <LinearGradient id="gradient" from="#990000" to="#002a6b" x1="60.7%" y1="0%" x2="61%" y2="0%"/>;
 
       <PatternLines
         id="linesEngFr"
@@ -108,23 +110,6 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
           {({ geographies }) =>
             geographies.map(geo => {
               var color = "white";
-
-              /*const isEng =
-                engSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
-              if (isEng) {
-                color = "#b30000";
-              }
-              const isFrenchImportant =
-                frenchImportant.indexOf(geo.properties.ISO_A3) !== -1;
-              if (isFrenchImportant) {
-                color = "#002b80";
-              }
-
-              const isAbleaToSpeakEng =
-                ableTospeakEnglish.indexOf(geo.properties.ISO_A3) !== -1;
-              if (isAbleaToSpeakEng) {
-                color = "#4d0000";
-              }*/
               
               const d = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
 
@@ -142,12 +127,6 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
               if (isCAN) {
                 color = "url('#gradient')"
               }
-
-              /*const isSpan =
-                spanSpeaking.indexOf(geo.properties.ISO_A3) !== -1;
-              if (isSpan) {
-                color = "#e65c00";
-              }*/
 
               return (
 
@@ -202,15 +181,21 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
 
         
 
-      {latLongdata.map(({ latitude, longitude, country, english, french }) => {
+      {latLongdata.map(({ latitude, longitude, country, english, french, englishIsland, smallCountry}) => {
         console.log("english -> " + english);
-        if (english.length > 0 &&(english > french) && english != 1) {
-          return(
-            <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
+        var lat = parseInt(latitude);
+        var long = parseInt(longitude);
+        if(englishIsland== 1){
+          lat = lat+1.5;
+          long = long+1;
+        }
 
+        if (english.length > 0 &&(english > french) && english != 1 && english > 0.04 && smallCountry != 1) {
+          return(
+            <Marker key={"annot"} coordinates={[long, lat]} country={country}>
               <text
                 textAnchor="middle"
-                style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 6, pointerEvents: "none", opacity: "0.8" }}
+                style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none", opacity: "1" }}
               >
                 {Math.round(english * 100)}%
               </text>
@@ -234,15 +219,15 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
                 console.log("");
               }}
             >
-            <circle r={2} fill="red" stroke="black" strokeWidth={0.3} />
+            <circle r={1.6} fill="#9e0307" stroke="black" strokeWidth={0.3} />
                         
             </Marker>
           )
         }
       })}
-
       
       {latLongdata.map(({ latitude, longitude, country, frenchIslands, country_code }) => {
+        
         if (frenchIslands == 1) {
           return(
             <Marker key={"annot"} coordinates={[longitude, latitude]} country_code={country_code} country={country}
@@ -255,19 +240,28 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
                 setNameTooltipContent("");
                 console.log("");
               }}>
-                        <circle r={2} fill="blue" stroke="black" strokeWidth={0.3} />
+                        <circle r={1.6} fill="#3e668a" stroke="black" strokeWidth={0.3} />
             </Marker>
           )
         }
       })}
 
-      {latLongdata.map(({ latitude, longitude, country, french, english }) => {
-        if (french != "" && (french > english) && french != 1) {
+      {latLongdata.map(({ latitude, longitude, country, french, english, frenchIslands }) => {
+
+        var lat = parseInt(latitude);
+        var long = parseInt(longitude);
+        if(frenchIslands== 1){
+          lat = lat+0.9;
+          long = long+0.9;
+        }
+
+
+        if (french != "" && (french > english) && french != 1 && french >= 0.09) {
           return (
-            <Marker key={"annot"} coordinates={[(longitude), (latitude)]} country={country}>
+            <Marker key={"frenchIlands"+country} coordinates={[(long), (lat)]} country={country}>
               <text
                 textAnchor="middle"
-                style={{ fontFamily: "system-ui", fill: "black", fontSize: 6, pointerEvents: "none", opacity: "0.8" }}
+                style={{ fontFamily: "system-ui", fill: "black", fontSize: 5, pointerEvents: "none", opacity: "1" }}
               >
                 {
                 Math.round(french * 100)
@@ -286,70 +280,3 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
 };
 
 export default memo(World);
-
-
-      /*
-
-            <Line coordinates={generateCircle(0)} stroke="#F53" strokeWidth={0.5} />
-      <Line
-        coordinates={generateCircle(23)}
-        stroke="#776865"
-        strokeWidth={0.5}
-        strokeDasharray={[5, 5]}
-      />
-      <Line
-        coordinates={generateCircle(-24)}
-        stroke="#776865"
-        strokeWidth={0.5}
-        strokeDasharray={[5, 5]}
-      />
-
-{islands.map(({ name, percentage, coordinates }) => (
-        <Marker key={name} coordinates={coordinates}>
-          <circle r={2} fill="#002b80" stroke="black" strokeWidth={0.3} />
-          <text
-            textAnchor="middle"
-            y="-3"
-            style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none" }}
-          >
-            {name}
-          </text>
-        </Marker>
-      ))}
-
-      {engIsles.map(({ name, percentage, coordinates }) => (
-        <Marker key={name} coordinates={coordinates}>
-          <circle r={2} fill="red" stroke="black" strokeWidth={0.3} />
-          <text
-            textAnchor="middle"
-            y="-3"
-            style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none" }}
-          >
-            {name}
-          </text>
-        </Marker>
-      ))}
-
-      const e = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
-              console.log("e", e);
-      
-            {percentages.map(({ name, coordinates }) => (
-        <Marker key={"annot"} coordinates={coordinates}>
-          <text
-            textAnchor="middle"
-            style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 6, pointerEvents: "none" }}
-          >
-            {name}
-          </text>
-        </Marker>
-      ))}
-      {engSpeakingPercentage.map(({ name, coordinates }) => (
-        <Marker key={"annot"} coordinates={coordinates}>
-          <text
-            textAnchor="middle"
-            style={{ fontFamily: "system-ui", fill: "pink", fontSize: 6, pointerEvents: "none" }}
-          >
-            {name}
-          </text>
-        </Marker>
-      ))}*/
