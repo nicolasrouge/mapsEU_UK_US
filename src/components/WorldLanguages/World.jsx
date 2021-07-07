@@ -47,6 +47,8 @@ function generateCircle(deg) {
 }
 
 //https://en.wikipedia.org/wiki/Geographical_distribution_of_French_speakers
+/**      <Sphere stroke="#DDD" strokeWidth={0.3} />
+      <Graticule stroke="#DDD" strokeWidth={0.2} /> */
 const colorScale = scaleLinear()
   .domain([0, 0.68])
   .range(["#ffedea", "#002b80"]);
@@ -100,8 +102,7 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
         orientation={["diagonal"]}
       />
 
-      <Sphere stroke="#DDD" strokeWidth={0.3} />
-      <Graticule stroke="#DDD" strokeWidth={0.2} />
+
       {data.length > 0 && (
         <Geographies geography={geoUrl} stroke="#000" strokeWidth={0.4}>
           {({ geographies }) =>
@@ -203,7 +204,7 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
 
       {latLongdata.map(({ latitude, longitude, country, english, french }) => {
         console.log("english -> " + english);
-        if (english.length > 0 &&(english > french)) {
+        if (english.length > 0 &&(english > french) && english != 1) {
           return(
             <Marker key={"annot"} coordinates={[longitude, latitude]} country={country}>
 
@@ -225,7 +226,7 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
             <Marker data-tip="" key={"annot"} coordinates={[longitude, latitude]} country_code={country_code} 
             onMouseEnter={() =>{
               setTooltipContent(country_code);
-              setNameTooltipContent(country_code);
+              setNameTooltipContent(country);
               }}
               onMouseLeave={() => {
                 setTooltipContent("");
@@ -244,10 +245,10 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
       {latLongdata.map(({ latitude, longitude, country, frenchIslands, country_code }) => {
         if (frenchIslands == 1) {
           return(
-            <Marker key={"annot"} coordinates={[longitude, latitude]} country_code={country_code} 
+            <Marker key={"annot"} coordinates={[longitude, latitude]} country_code={country_code} country={country}
             onMouseEnter={() =>{
               setTooltipContent(country_code);
-              setNameTooltipContent(country_code);
+              setNameTooltipContent(country);
               }}
               onMouseLeave={() => {
                 setTooltipContent("");
@@ -261,9 +262,9 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
       })}
 
       {latLongdata.map(({ latitude, longitude, country, french, english }) => {
-        if (french != "" && (french > english)) {
+        if (french != "" && (french > english) && french != 1) {
           return (
-            <Marker key={"annot"} coordinates={[(longitude+100), (latitude-0.1)]} country={country}>
+            <Marker key={"annot"} coordinates={[(longitude), (latitude)]} country={country}>
               <text
                 textAnchor="middle"
                 style={{ fontFamily: "system-ui", fill: "black", fontSize: 6, pointerEvents: "none", opacity: "0.8" }}
@@ -278,7 +279,18 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
         }
       })}
 
-      <Line coordinates={generateCircle(0)} stroke="#F53" strokeWidth={0.5} />
+
+      </ZoomableGroup>
+    </ComposableMap>
+  );
+};
+
+export default memo(World);
+
+
+      /*
+
+            <Line coordinates={generateCircle(0)} stroke="#F53" strokeWidth={0.5} />
       <Line
         coordinates={generateCircle(23)}
         stroke="#776865"
@@ -291,15 +303,7 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
         strokeWidth={0.5}
         strokeDasharray={[5, 5]}
       />
-      </ZoomableGroup>
-    </ComposableMap>
-  );
-};
 
-export default memo(World);
-
-
-      /*
 {islands.map(({ name, percentage, coordinates }) => (
         <Marker key={name} coordinates={coordinates}>
           <circle r={2} fill="#002b80" stroke="black" strokeWidth={0.3} />
