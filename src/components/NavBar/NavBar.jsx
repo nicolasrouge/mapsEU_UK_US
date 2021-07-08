@@ -23,7 +23,7 @@ export default function NavBar() {
   const [content, setContent] = useState("");
   const [content2, setContent2] = useState("");
 
-  return (
+  /*return (
     <div>
       <Router>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -70,9 +70,6 @@ export default function NavBar() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/europe">
             <Europe2 />
@@ -109,7 +106,14 @@ export default function NavBar() {
         </Switch>
       </Router>
     </div>
+  )*/
+
+  return(
+    <div>
+    <Home/>
+    </div>
   )
+
   function Home() {
     return <div>
       <div style={{ width: "100%", margin: "auto", marginTop: "-8.3%" }}>

@@ -6,25 +6,14 @@ import {
   Geographies,
   Geography,
   Marker,
-  Graticule,
-  Line,
-  Sphere,
-  Annotation
 } from "react-simple-maps";
 import { PatternLines } from "@vx/pattern";
-import percentages from './percentage';
-import islands from './islands';
-import engSpeakingPercentage from "./englishSpeakingCountries";
-import engIsles from "./engIsles";
 import frenchSpeakers from './frenchSpeakers.csv';
-//frenchIslands
 import latlongCountries from './world_country_and_usa_states_latitude_and_longitude_values.csv';
-import { longStackSupport } from "q";
 import { ZoomableGroup } from "react-simple-maps"
-import { LinearGradient, RadialGradient } from '@vx/gradient';
+import { LinearGradient } from '@vx/gradient';
 
 //https://vx-demo.vercel.app/docs/group
-
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
@@ -77,7 +66,7 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
 
 
   return (
-    <ComposableMap data-tip="" projection="geoEqualEarth" width="900" height="2000">
+    <ComposableMap data-tip="" projection="geoEqualEarth" width="900" height="1400" zoom="0.5">
       <ZoomableGroup>
       <PatternLines
         id="lines"
@@ -150,6 +139,8 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
 
                     console.log(geo.properties);
                   }}
+
+
                   onMouseLeave={() => {
                     setTooltipContent("");
                     setNameTooltipContent("");

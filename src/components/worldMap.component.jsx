@@ -8,10 +8,10 @@ const changeText = (name) => {
     if (name === null) {
         return "";
     } else {
-        if(name != ""){
+        if (name != "") {
             url = "https://www.countryflags.io/" + name.toLowerCase() + "/flat/64.png";
-        }else{
-            url =""
+        } else {
+            url = ""
         }
         return url;
     }
@@ -25,11 +25,10 @@ function Worldmap() {
     const [comment, setComment] = useState("");
     const [data, setData] = useState("");
     const [capital, setCapital] = useState("");
-    const [hide, setHide] = useState(false);
 
     useEffect(async () => {
         if (content != "") {
-            console.log({content});
+            console.log({ content });
             const result = await axios(
                 'https://restcountries.eu/rest/v2/alpha/' + content.toLowerCase(),
             );
@@ -37,37 +36,42 @@ function Worldmap() {
             if (result.data.languages[1] != undefined) {
                 setData(result.data.languages[0].name + " and " + result.data.languages[1].name);
                 setCapital(result.data.capital);
-                setHide(false);
+
             }
             else {
                 setData(result.data.languages[0].name);
                 setCapital(result.data.capital);
-                setHide(false);
             }
         } else {
             console.log("out");
-            setHide(true);
         }
     });
 
+
+        var tooltipContent = <div><img style={{ width: '30px' }} src={changeText(content)}></img> -
+        <text style={{ fontWeight: "bold" }}>{nameContent} - {capital}</text>
+        <p style={{ maxWidth: "300px", textAlign: "left" }}>{data}</p>
+        <p style={{ maxWidth: "300px", textAlign: "left" }}>{comment}</p></div> ;
+
+      if(content == "") {
+        tooltipContent = "";
+      }
+
     return (
         <div>
-            <Europe setTooltipContent={setContent} setNameTooltipContent={setNameTooltipContent} setComment={setComment} />
+            <h1 style={{position: "absolute", top: "0.5em"}}>hello</h1>
+            <Europe
+                setTooltipContent={setContent}
+                setNameTooltipContent={setNameTooltipContent}
+                setComment={setComment}
+            />
 
-            {!hide && 
-                <ReactTooltip >
-                    <img style={{ width: '30px' }} src={changeText(content)}></img> - <text style={{fontWeight: "bold"}}>{nameContent} - {capital}</text>
-                    <p style={{maxWidth: "300px", textAlign: "left" }}>Official language: {data}</p>
-                    <p style={{maxWidth: "300px", textAlign: "left" }}>
-                    {comment}
-                    </p>
-                    
-                </ReactTooltip>
-            }
-
-
+            <ReactTooltip >
+                {tooltipContent}
+            </ReactTooltip>
 
         </div>
     );
 }
+
 export default Worldmap;
