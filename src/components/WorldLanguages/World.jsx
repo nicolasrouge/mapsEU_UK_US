@@ -66,203 +66,200 @@ const World = ({ setTooltipContent, setNameTooltipContent, setComment }) => {
 
 
   return (
-    <ComposableMap data-tip="" projection="geoEqualEarth" width="900" height="1400" zoom="0.5">
+    <ComposableMap data-tip="" projection="geoEqualEarth" width="900" height="2000" zoom="0.5">
       <ZoomableGroup>
-      <PatternLines
-        id="lines"
-        height={5}
-        width={5}
-        stroke="#776865"
-        strokeWidth={0.5}
-        background="#002b80"
-        orientation={["diagonal"]}
-      />
-      
+        <PatternLines
+          id="lines"
+          height={5}
+          width={5}
+          stroke="#776865"
+          strokeWidth={0.5}
+          background="#002b80"
+          orientation={["diagonal"]}
+        />
+
       //canada
-      <LinearGradient id="gradient" from="#990000" to="#002a6b" x1="60.7%" y1="0%" x2="61%" y2="0%"/>;
+        <LinearGradient id="gradient" from="#990000" to="#002a6b" x1="60.7%" y1="0%" x2="61%" y2="0%" />;
 
-      <PatternLines
-        id="linesEngFr"
-        height={5}
-        width={5}
-        stroke="#002b80"
-        strokeWidth={0.6}
-        strokeLinecap= "butt"
-        background="red"
-        shapeRendering="100"
-        orientation={["diagonal"]}
-      />
-
-
-      {data.length > 0 && (
-        <Geographies geography={geoUrl} stroke="#000" strokeWidth={0.4}>
-          {({ geographies }) =>
-            geographies.map(geo => {
-              var color = "white";
-              
-              const d = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
+        <PatternLines
+          id="linesEngFr"
+          height={5}
+          width={5}
+          stroke="#002b80"
+          strokeWidth={0.6}
+          strokeLinecap="butt"
+          background="red"
+          shapeRendering="100"
+          orientation={["diagonal"]}
+        />
 
 
-              if(d !== undefined){
-                color = colorScale2(d["english"]);
-                console.log("d", d);
-                if(d.french !== "" && d.french >d.english ){
-                  color = colorScale(d["french"]);
+        {data.length > 0 && (
+          <Geographies geography={geoUrl} stroke="#000" strokeWidth={0.4}>
+            {({ geographies }) =>
+              geographies.map(geo => {
+                var color = "white";
+
+                const d = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
+
+
+                if (d !== undefined) {
+                  color = colorScale2(d["english"]);
+                  console.log("d", d);
+                  if (d.french !== "" && d.french > d.english) {
+                    color = colorScale(d["french"]);
+                  }
                 }
-              }
 
-              const isCAN =
-                canada.indexOf(geo.properties.ISO_A3) !== -1;
-              if (isCAN) {
-                color = "url('#gradient')"
-              }
+                const isCAN =
+                  canada.indexOf(geo.properties.ISO_A3) !== -1;
+                if (isCAN) {
+                  color = "url('#gradient')"
+                }
 
-              return (
+                return (
 
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  onMouseEnter={() => {
-                    setTooltipContent(`${geo.properties.ISO_A2}`);
-                    setNameTooltipContent(`${geo.properties.NAME}`);
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    onMouseEnter={() => {
+                      setTooltipContent(`${geo.properties.ISO_A2}`);
+                      setNameTooltipContent(`${geo.properties.NAME}`);
 
-                    //get the comment
-                    const d = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
-                    var comment = "";
-                    if(d !== undefined){
-                      console.log("d", d);
-                      if(d["com"] != ""){
-                        comment = d["com"];
+                      //get the comment
+                      const d = latLongdata.find((s) => s.country_code === geo.properties.ISO_A2);
+                      var comment = "";
+                      if (d !== undefined) {
+                        console.log("d", d);
+                        if (d["com"] != "") {
+                          comment = d["com"];
+                        }
                       }
-                    }
-                    setComment(comment);
+                      setComment(comment);
 
-                    console.log(geo.properties);
-                  }}
+                      console.log(geo.properties);
+                    }}
 
 
-                  onMouseLeave={() => {
-                    setTooltipContent("");
-                    setNameTooltipContent("");
-                    console.log("");
-                  }}
-                  style={{
-                    hover: {
-                      fill: "#009999",
-                      outline: "none"
-                    },
-                    pressed: {
-                      fill: "#E42",
-                      outline: "none"
-                    }
-                  }}
+                    onMouseLeave={() => {
+                      setTooltipContent("");
+                      setNameTooltipContent("");
+                      console.log("");
+                    }}
+                    style={{
+                      hover: {
+                        fill: "#009999",
+                        outline: "none"
+                      },
+                      pressed: {
+                        fill: "#E42",
+                        outline: "none"
+                      }
+                    }}
 
-                  fill={color}
+                    fill={color}
 
-                  onClick={() => {
-                    setTooltipContent(`${geo.properties.ISO_A2}`);
-                    setNameTooltipContent(`${geo.properties.NAME}`);
-                    console.log(geo.properties);
-                  }}
-                />
-              );
-            })
+                    onClick={() => {
+                      setTooltipContent(`${geo.properties.ISO_A2}`);
+                      setNameTooltipContent(`${geo.properties.NAME}`);
+                      console.log(geo.properties);
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>)}
+
+        {latLongdata.map(({ latitude, longitude, country, english, french, englishIsland, smallCountry }) => {
+          console.log("english -> " + english);
+          var lat = parseInt(latitude);
+          var long = parseInt(longitude);
+          if (englishIsland == 1) {
+            lat = lat + 1.5;
+            long = long + 1;
           }
-        </Geographies>)}
+          if (english.length > 0 && (english > french) && english != 1 && english > 0.04 && smallCountry != 1) {
+            return (
+              <Marker key={"annot"} coordinates={[long, lat]} country={country}>
+                <text
+                  textAnchor="middle"
+                  style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none", opacity: "1" }}
+                >
+                  {Math.round(english * 100)}%
+                </text>
+              </Marker>
+            )
+          }
+        })}
 
-        
 
-      {latLongdata.map(({ latitude, longitude, country, english, french, englishIsland, smallCountry}) => {
-        console.log("english -> " + english);
-        var lat = parseInt(latitude);
-        var long = parseInt(longitude);
-        if(englishIsland== 1){
-          lat = lat+1.5;
-          long = long+1;
-        }
-
-        if (english.length > 0 &&(english > french) && english != 1 && english > 0.04 && smallCountry != 1) {
-          return(
-            <Marker key={"annot"} coordinates={[long, lat]} country={country}>
-              <text
-                textAnchor="middle"
-                style={{ fontFamily: "system-ui", fill: "yellow", fontSize: 5, pointerEvents: "none", opacity: "1" }}
+        {latLongdata.map(({ latitude, longitude, country, englishIsland, country_code }) => {
+          if (englishIsland == 1) {
+            return (
+              <Marker data-tip="" key={"annot"} coordinates={[longitude, latitude]} country_code={country_code}
+                onMouseEnter={() => {
+                  setTooltipContent(country_code);
+                  setNameTooltipContent(country);
+                }}
+                onMouseLeave={() => {
+                  setTooltipContent("");
+                  setNameTooltipContent("");
+                  console.log("");
+                }}
               >
-                {Math.round(english * 100)}%
-              </text>
-            </Marker>
-          )
-        }
-      })}
+                <circle r={1.6} fill="#9e0307" stroke="black" strokeWidth={0.3} />
+
+              </Marker>
+            )
+          }
+        })}
+
+        {latLongdata.map(({ latitude, longitude, country, frenchIslands, country_code }) => {
+
+          if (frenchIslands == 1) {
+            return (
+              <Marker key={"annot"} coordinates={[longitude, latitude]} country_code={country_code} country={country}
+                onMouseEnter={() => {
+                  setTooltipContent(country_code);
+                  setNameTooltipContent(country);
+                }}
+                onMouseLeave={() => {
+                  setTooltipContent("");
+                  setNameTooltipContent("");
+                  console.log("");
+                }}>
+                <circle r={1.6} fill="#3e668a" stroke="black" strokeWidth={0.3} />
+              </Marker>
+            )
+          }
+        })}
+
+        {latLongdata.map(({ latitude, longitude, country, french, english, frenchIslands }) => {
+
+          var lat = parseInt(latitude);
+          var long = parseInt(longitude);
+          if (frenchIslands == 1) {
+            lat = lat + 0.9;
+            long = long + 0.9;
+          }
 
 
-      {latLongdata.map(({ latitude, longitude, country, englishIsland, country_code }) => {
-        if (englishIsland == 1) {
-          return(
-            <Marker data-tip="" key={"annot"} coordinates={[longitude, latitude]} country_code={country_code} 
-            onMouseEnter={() =>{
-              setTooltipContent(country_code);
-              setNameTooltipContent(country);
-              }}
-              onMouseLeave={() => {
-                setTooltipContent("");
-                setNameTooltipContent("");
-                console.log("");
-              }}
-            >
-            <circle r={1.6} fill="#9e0307" stroke="black" strokeWidth={0.3} />
-                        
-            </Marker>
-          )
-        }
-      })}
-      
-      {latLongdata.map(({ latitude, longitude, country, frenchIslands, country_code }) => {
-        
-        if (frenchIslands == 1) {
-          return(
-            <Marker key={"annot"} coordinates={[longitude, latitude]} country_code={country_code} country={country}
-            onMouseEnter={() =>{
-              setTooltipContent(country_code);
-              setNameTooltipContent(country);
-              }}
-              onMouseLeave={() => {
-                setTooltipContent("");
-                setNameTooltipContent("");
-                console.log("");
-              }}>
-                        <circle r={1.6} fill="#3e668a" stroke="black" strokeWidth={0.3} />
-            </Marker>
-          )
-        }
-      })}
+          if (french != "" && (french > english) && french != 1 && french >= 0.09) {
+            return (
+              <Marker key={"frenchIlands" + country} coordinates={[(long), (lat)]} country={country}>
+                <text
+                  textAnchor="middle"
+                  style={{ fontFamily: "system-ui", fill: "black", fontSize: 5, pointerEvents: "none", opacity: "1" }}
+                >
+                  {
+                    Math.round(french * 100)
 
-      {latLongdata.map(({ latitude, longitude, country, french, english, frenchIslands }) => {
-
-        var lat = parseInt(latitude);
-        var long = parseInt(longitude);
-        if(frenchIslands== 1){
-          lat = lat+0.9;
-          long = long+0.9;
-        }
-
-
-        if (french != "" && (french > english) && french != 1 && french >= 0.09) {
-          return (
-            <Marker key={"frenchIlands"+country} coordinates={[(long), (lat)]} country={country}>
-              <text
-                textAnchor="middle"
-                style={{ fontFamily: "system-ui", fill: "black", fontSize: 5, pointerEvents: "none", opacity: "1" }}
-              >
-                {
-                Math.round(french * 100)
-                
-                }%
-              </text>
-            </Marker>
-          )
-        }
-      })}
+                  }%
+                </text>
+              </Marker>
+            )
+          }
+        })}
 
 
       </ZoomableGroup>

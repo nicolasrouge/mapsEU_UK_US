@@ -59,7 +59,7 @@ function Worldmap() {
 
     return (
         <div>
-            <h1 style={{position: "absolute", top: "0.5em"}}>hello</h1>
+            <h1 style={{position: "absolute", top: "0.5em"}}>English and French speakers (native or not) </h1>
             <Europe
                 setTooltipContent={setContent}
                 setNameTooltipContent={setNameTooltipContent}
